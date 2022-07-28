@@ -1,3 +1,6 @@
-export const environment = {
-  production: true
+import { Environment } from "./interface";
+
+export const environment: Environment = {
+  production: true,
+  apiKey: "AIzaSyD7Qdw2wI6dtZVVWrNmv4YyE2CloFyuWss"
 };
