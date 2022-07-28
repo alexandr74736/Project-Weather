@@ -3,18 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PwaComponent } from './pwa/pwa.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MainComponent } from './main/main.component';
+import { PageWeatherComponent } from './page-weather/page-weather.component';
+import { ReactiveFormsModule, FormsModule }   from '@angular/forms';
+
+import { HttpClientModule }   from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PwaComponent
+    MainComponent,
+    PageWeatherComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule, 
+    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
