@@ -1,0 +1,21 @@
+<div id="divWeatherMain" class="page-weather">
+    <div class="page-weather__header">
+        <button type="button">
+            <img src="../../assets/icons/Other/Back.svg" alt="Назад">
+        </button>
+        <!-- <form [formGroup]="form" novalidate>
+            <input type="checkbox" formControlName="bookmark" onChange="this.form.submit()">
+        </form> -->
+            <!-- <img src="../../assets/icons/Other/Bookmark.svg" alt="Закладка"> -->
+
+    </div>
+    <div class="page-weather__container">
+        <div class="page-weather__item page-weather__item_city">{{ city?.name }}</div> 
+        <div class="page-weather__item">{{ city?.description }}</div>
+        <div class="page-weather__item page-weather__item_temp">
+            <p class="item_temp">{{ city?.temp }}°</p>
+        </div>
+        <div class="page-weather__item">{{ city?.pressure }} мм рт. ст.</div>
+        <div class="page-weather__item">Закат в {{ city?.sunset }}</div> 
+    </div>
+</div>

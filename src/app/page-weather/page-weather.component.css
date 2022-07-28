@@ -1,0 +1,52 @@
+.page-weather {
+    display: grid;
+    grid-template-rows: 65px 1fr;
+    background: linear-gradient(180deg, #5A607C 0%, #161B30 49.93%);
+}
+
+.page-weather__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-weather__container {
+    display: grid;
+    justify-items: center;
+    margin: 0;
+}
+
+.page-weather__item {
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.page-weather__item_city {
+    font-size: 24px;
+    color: #fff
+}
+
+.page-weather__item_temp {
+    font-size: 130px;
+    margin: 0;
+}
+
+button {
+    padding: 0;
+    padding: 25px;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+/* input {
+    all:unset;
+    padding: 0;
+    padding: 25px;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+} */
