@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Coords } from './Coords';
-import { City } from './city';
+import { Coords } from '../shared/Coords';
+import { City } from '../shared/city';
 import {Observable} from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs'
+import { iconsService } from './icons.service';
 
   
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class HttpService{
   
-    constructor(private http: HttpClient){ }
+    constructor(private http: HttpClient, private iconsService: iconsService){ }
 
 
     getCoords(cityName:string) : Observable<any> {
@@ -35,21 +35,26 @@ export class HttpService{
             let temp = (obj.main["temp"] - 273.15).toFixed(0);
             let sunsetTime = new Date(obj.sys["sunset"] * 1000);
             let sunset_time = sunsetTime.toLocaleTimeString()
-
+            let icon = obj.weather[0]["icon"]
+            icon = this.iconsService.checkIcon(icon)
+             
             return new City(
                 obj.name, 
                 obj.weather[0]["description"], 
                 temp, 
                 pressure, 
-                sunset_time
+                sunset_time,
+                icon
                 );
         }));
     }
 
     getCityData(cityName:string) : Observable<City> {
-       return this.getCoords(cityName)
-           .pipe(
-               switchMap( (Coords) => this.getData(Coords.lat, Coords.lon))
-           )
+    
+        return this.getCoords(cityName)
+            .pipe(
+                switchMap( (Coords) => this.getData(Coords.lat, Coords.lon))
+            )
     }
+
 }

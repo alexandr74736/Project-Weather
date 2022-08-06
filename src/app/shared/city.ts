@@ -5,5 +5,6 @@ export class City {
         public temp:string,
         public pressure:number,
         public sunset:string,
+        public icon: string
         ){}
 }
