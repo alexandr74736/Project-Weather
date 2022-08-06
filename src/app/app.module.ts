@@ -10,12 +10,16 @@ import { PageWeatherComponent } from './page-weather/page-weather.component';
 import { ReactiveFormsModule, FormsModule }   from '@angular/forms';
 
 import { HttpClientModule }   from '@angular/common/http';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { SvgIconComponent } from './svg-icon/svg-icon.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     PageWeatherComponent,
+    SvgIconComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +27,7 @@ import { HttpClientModule }   from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule, 
     HttpClientModule,
+    AutocompleteLibModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
