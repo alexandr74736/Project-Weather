@@ -1,6 +1,6 @@
 .page-weather {
     display: grid;
-    grid-template-rows: 65px 1fr;
+    grid-template-rows: 13.333vw 1fr;
     background: linear-gradient(180deg, #5A607C 0%, #161B30 49.93%);
 }
 
@@ -12,6 +12,7 @@
 .page-weather__container {
     display: grid;
     justify-items: center;
+    align-items: center;
     margin: 0;
 }
 
@@ -21,13 +22,39 @@
 }
 
 .page-weather__item_city {
-    font-size: 24px;
+    font-size: 6.4vw;
+    /* font-size: calc(100vw / 15.625); */
     color: #fff
 }
 
+.page-weather__item_description {
+    font-size: 3.733vw;
+    font-weight: 400;
+    letter-spacing: 0em;
+    color: #fff;
+
+}
+
 .page-weather__item_temp {
-    font-size: 130px;
+    font-size: 32vw;
     margin: 0;
+    /* Не работает градиент для текста */
+    color: linear-gradient(180deg, #FFFFFF 11.65%, rgba(255, 255, 255, 0) 139.47%);
+}
+
+.page-weather__item_icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-weather__item_pressure {
+    display: flex;
+    align-items: center;
+}
+
+.item_pressure {
+    margin-left: 2.66vw;
 }
 
 button {
@@ -38,15 +65,25 @@ button {
     color: inherit;
     background-color: transparent;
     cursor: pointer;
-  }
+}
 
-/* input {
-    all:unset;
-    padding: 0;
-    padding: 25px;
-    border: none;
-    font: inherit;
-    color: inherit;
-    background-color: transparent;
-    cursor: pointer;
-} */
+
+.icon_back {
+    max-width: 2.666vw;
+    max-height: 2.548vh;
+}
+
+.icon_bookmark {
+    width: 3.733vw;
+    height: 2.998vh;
+}
+
+.icon_weather {
+    width: 35.2vw;
+    height: 19.79vh;
+}
+
+.icon_barometer {
+    width: 6.4vw;
+    height: 3.598vh;
+}

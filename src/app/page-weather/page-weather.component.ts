@@ -1,30 +1,102 @@
-import { Component, OnInit } from '@angular/core';
-import { Coords } from '../Coords';
-import { City } from '../city';
-import { HttpService } from '../http.service';
-import { Observable } from 'rxjs';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { City } from '../shared/city';
+import { HttpService } from '../services/http.service';
+import { Subscription, switchMap } from 'rxjs';
+import { localService } from '../services/local.service';
+import { autocompleeteService } from '../services/autocompleete.service';
+import { PostsService } from '../services/posts.service';
+import { ActivatedRoute } from '@angular/router';
+import { iconsService } from '../services/icons.service';
 
 @Component({
   selector: 'app-page-weather',
   templateUrl: './page-weather.component.html',
   styleUrls: ['./page-weather.component.css'],
-  providers: [HttpService]
+  providers: []
 })
-export class PageWeatherComponent implements OnInit {
+export class PageWeatherComponent implements OnInit, OnDestroy {
 
+  
  
-  city: City | undefined
-  cityName: string = "Ижевск"
-  lat:any
-  lon:any
-  coords: any
+  city: City | any
+  cityName: any
+  bookmark: string = "Bookmark"
+  id: any
+  icon: any
+  pSub?: Subscription
+  dSub?: Subscription
+  posts: string[] = []
 
 
-  constructor(private httpService: HttpService) { }
+  arr: any
+
+  constructor( private httpService: HttpService, 
+               private acService: autocompleeteService,
+               private postsService: PostsService,
+               private localService: localService,
+               private iconsService: iconsService,
+               private route: ActivatedRoute
+               ) { }
 
   ngOnInit() {
-    this.httpService.getCityData(this.cityName).subscribe((data: City) => this.city=data)
+
+    this.pSub = this.route.paramMap.pipe( switchMap(params => params.getAll('id') )
+    ).subscribe((count: string) => {
+      this.cityName = count
+
+      return this.httpService.getCityData(this.cityName).subscribe((data: City) => {
+        this.city=data
+      })
+    });
+
+    this.dSub = this.postsService.bSbj$.subscribe(arr => {
+      this.arr = arr
+    })
   }
 
+
+  check($event:any) {
+    let e = $event.target.checked
+    
+    if (e === true) {
+    
+      if (this.arr.includes(this.city.name)) {
+        return
+      }
+      this.bookmark = "Bookmark_use"
+      this.arr.push(this.city)
+      this.posts = this.arr
+      localStorage.setItem(`${this.city.name}`, JSON.stringify(this.city))
+      this.postsService.newBSub(this.posts)
+
+    } else {
+        this.bookmark = "Bookmark"
+        let idx = this.arr.indexOf(this.city.name)
+        this.arr.splice(idx,1)
+        this.posts = this.arr
+        localStorage.removeItem(`${this.city.name}`)
+        this.postsService.newBSub(this.posts)
+    }
+  }
+
+  checkActive():any | undefined {
+    let name = localStorage.getItem(this.city?.name)
+
+    if (name !== null) {
+      this.bookmark = "Bookmark_use"
+      return true
+    } else {
+      this.bookmark = "Bookmark"
+      return false
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.pSub) {
+      this.pSub.unsubscribe()
+    }
+    if (this.dSub) {
+      this.dSub.unsubscribe()
+    }
+  }
 }
