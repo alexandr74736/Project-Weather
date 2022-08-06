@@ -1,34 +1,77 @@
 <div class="body">
-    <header>
+    <header class="header">
+        <!-- Исправить Картинку -->
         <div class="header__logo">
-            <img class="logo" src="../../assets/icons/Other/logo.svg" alt="Логотип">
+            <div class="logo__container">
+                <svg-icon icon="Logo" class="logo__icon" alt="Логотип"></svg-icon>
+            </div>
+            <div class="logo__container">
+                <p class="logo__text">WeatherCheck</p>
+            </div>
         </div>
     </header>
     
     <main>
         <div class="input-field">
-            <input type="text">
+            <!-- Изменить цвет бэкграунда -->
+                <div class="input">
+                    <ng-autocomplete 
+                      [data]="data"
+                      [searchKeyword]="keyword"
+                      placeholder="Укажите город..."
+                      (selected)='selectEvent($event)'
+                      [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate">                                 
+                    </ng-autocomplete>
+                    
+                    <ng-template #itemTemplate let-item >
+                    <a [innerHTML]="item.name" ></a>
+                    </ng-template>
+                    
+                    <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                </div>
         </div>
-        <div class="hint-city">
-            <div class="hint-city__container">
-                <div class="hint-city__icon-arrow">
-                    <img class="icon-arrow" src="../../assets/icons/Other/Arrow.svg" alt="Стрелка вверх">
-                </div>
-                <div class="hint-city__description">
-                    <p class="hint-city__text">Начните вводить город, например $</p>
-                </div>
+        
+        <div  class="post-weather" *ngIf="posts?.length; else loading">
+            <div class="post-weather__post-container" *ngFor="let post of posts" (click)="goToCity($event)">
+                <ul class="post-container">
+                    <li class="post-container__city">{{ post?.name }}</li>
+                    <li class="post-container__temp">
+                        <p class="item_temp">{{ post?.temp }}°</p>
+                    </li>
+                    <li class="post-container__icon">
+                        <svg-icon icon="{{ post?.icon }}" class="icon icon_weather"></svg-icon>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="hint-bookmark">
-            <div class="hint-bookmark__container">
-                <div class="hint-bookmark__description">
-                    Используйте значок «закладки»,
-                    чтобы закрепить город на главной
-                </div>
-                <div class="hint-bookmark__icon-bookmark">
-                    <img class="icon-bookmark" src="../../assets/icons/Other/Bookmark.svg" alt="Закладка">
+
+        <ng-template #loading>
+            <div class="hint-city">
+                <div class="hint-city__container">
+                    <div class="hint-city__icon-arrow">
+                        <svg-icon icon="Arrow" class="icon icon-arrow" alt="Стрелка вверх"></svg-icon>
+                    </div>
+                    <div class="hint-city__description">
+                        <p class="hint-city__text">Начните вводить город, например, <a [routerLink]="['/page', 'Ижевск']">Ижевск</a></p>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="hint-bookmark">
+                <div class="hint-bookmark__container">
+                    <div class="hint-bookmark__description">
+                        Используйте значок «закладки»,
+                        чтобы закрепить город на главной
+                    </div>
+                    <div class="hint-bookmark__icon-bookmark">
+                        <svg-icon icon="Bookmark" class="icon icon-bookmark" alt="Закладка"></svg-icon>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
     </main>
 </div>
+
+
