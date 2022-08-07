@@ -1,12 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { City } from '../shared/city';
 import { HttpService } from '../services/http.service';
 import { Subscription, switchMap } from 'rxjs';
-import { localService } from '../services/local.service';
-import { autocompleeteService } from '../services/autocompleete.service';
 import { PostsService } from '../services/posts.service';
 import { ActivatedRoute } from '@angular/router';
-import { iconsService } from '../services/icons.service';
+
 
 @Component({
   selector: 'app-page-weather',
@@ -31,29 +29,32 @@ export class PageWeatherComponent implements OnInit, OnDestroy {
   arr: any
 
   constructor( private httpService: HttpService, 
-               private acService: autocompleeteService,
                private postsService: PostsService,
-               private localService: localService,
-               private iconsService: iconsService,
                private route: ActivatedRoute
                ) { }
 
   ngOnInit() {
+    this.getBSub()
+    this.getData()
+  }
 
-    this.pSub = this.route.paramMap.pipe( switchMap(params => params.getAll('id') )
-    ).subscribe((count: string) => {
-      this.cityName = count
-
-      return this.httpService.getCityData(this.cityName).subscribe((data: City) => {
-        this.city=data
-      })
-    });
-
+  getBSub() {
     this.dSub = this.postsService.bSbj$.subscribe(arr => {
       this.arr = arr
     })
   }
 
+  getData() {
+    this.pSub = this.route.paramMap.pipe( switchMap(params => params.getAll('id') )
+    ).subscribe((count: string) => {
+      this.cityName = count
+      
+      return this.httpService.getCityData(this.cityName).subscribe((data: City) => {
+        this.city=data
+        
+      })
+    });
+  }
 
   check($event:any) {
     let e = $event.target.checked

@@ -1,6 +1,6 @@
 .page-weather {
     display: grid;
-    grid-template-rows: 13.333vw 1fr;
+    grid-template-rows: 65px 1fr;
     background: linear-gradient(180deg, #5A607C 0%, #161B30 49.93%);
 }
 
@@ -22,24 +22,34 @@
 }
 
 .page-weather__item_city {
-    font-size: 6.4vw;
-    /* font-size: calc(100vw / 15.625); */
-    color: #fff
+    font-family: "SF-Medium";
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+
 }
 
 .page-weather__item_description {
-    font-size: 3.733vw;
+    font-size: 14px;
     font-weight: 400;
+    line-height: 15px;
     letter-spacing: 0em;
     color: #fff;
 
 }
 
-.page-weather__item_temp {
-    font-size: 32vw;
-    margin: 0;
-    /* Не работает градиент для текста */
-    color: linear-gradient(180deg, #FFFFFF 11.65%, rgba(255, 255, 255, 0) 139.47%);
+.item_temp {
+    font-family: "SF-Bold";
+    font-size: 120px;
+    font-weight: 600;
+    line-height: 133px;
+    letter-spacing: 0em;
+    background: linear-gradient(180deg, #FFFFFF 11.65%, rgba(255, 255, 255, 0) 139.47%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
 }
 
 .page-weather__item_icon {
@@ -51,13 +61,25 @@
 .page-weather__item_pressure {
     display: flex;
     align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    color: #fff;
+}
+
+.page-weather__item_sunset {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
 }
 
 .item_pressure {
-    margin-left: 2.66vw;
+    margin-left: 10px;
 }
 
-button {
+.header__btn {
     padding: 0;
     padding: 25px;
     border: none;
@@ -67,23 +89,34 @@ button {
     cursor: pointer;
 }
 
-
-.icon_back {
-    max-width: 2.666vw;
-    max-height: 2.548vh;
+input {
+    display: none;
 }
 
-.icon_bookmark {
-    width: 3.733vw;
-    height: 2.998vh;
+.icon {
+    width: 24px;
+    height: 24px;
 }
 
 .icon_weather {
-    width: 35.2vw;
-    height: 19.79vh;
+    width: 132px;
+    height: 132px;
 }
 
-.icon_barometer {
-    width: 6.4vw;
-    height: 3.598vh;
+
+@media (min-width: 1024px) {
+
+    .page-weather__item_flex {
+        display: flex;
+    }
+
+    .item_temp {
+        margin-bottom: 120px;
+    }
+
+    .page-weather__item_temp, .page-weather__item_icon {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 }

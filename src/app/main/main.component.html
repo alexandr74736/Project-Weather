@@ -2,7 +2,7 @@
     <header class="header">
         <!-- Исправить Картинку -->
         <div class="header__logo">
-            <div class="logo__container">
+            <div class="logo__container logo__container_logo">
                 <svg-icon icon="Logo" class="logo__icon" alt="Логотип"></svg-icon>
             </div>
             <div class="logo__container">
@@ -24,7 +24,7 @@
                       [notFoundTemplate]="notFoundTemplate">                                 
                     </ng-autocomplete>
                     
-                    <ng-template #itemTemplate let-item >
+                    <ng-template #itemTemplate let-item id="ng-template">
                     <a [innerHTML]="item.name" ></a>
                     </ng-template>
                     

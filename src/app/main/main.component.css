@@ -19,7 +19,7 @@ header {
 
 .logo__text {
     margin-left: 12.5px;
-    /* font-size: calc(100vw / 23.4375px);  */
+    font-family: "SF-Bold";
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0em;
@@ -59,11 +59,16 @@ main {
 .hint-city__container {
     display: flex;
     width: 80%;
+    justify-content: center;
+}
+
+.hint-city__icon-arrow {
+    margin-right: 6px;
 }
 
 .icon-arrow {
-    max-width: 9.41vw;
-    max-height: 3.737vh;
+    width: 38px;
+    height: 32px;
 }
 
 .hint-bookmark__container {
@@ -74,7 +79,7 @@ main {
 
 .hint-bookmark__description {
     text-align: center;
-    margin-bottom: 6.221vw;
+    margin-bottom: 23px;
 }
 
 .hint-city__text {
@@ -82,13 +87,14 @@ main {
 }
 
 .icon-bookmark {
-    max-width: 6.13vw;
-    max-height: 4.997vh;
+    max-width: 40px;
+    max-height: 40px;
 }
 
 a {
     text-decoration:none;
     color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 1)
 }
 
 ul{ 
@@ -107,20 +113,19 @@ ul{
 .post-weather__post-container {
     background: rgba(41, 46, 68, 0.5);
     border-radius: 6px;
-    /* flex: 1 1 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer; 
-    /* width: 42.133vw;
-    height: 28.485vh; */
-    flex: calc((100% / 2) - 2rem);
-    
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    /* width: calc((100% / 2) - (2rem / 2)); */
 }
 
-.post-weather__post-container:nth-child(2n) {
+
+/* .post-weather__post-container:nth-child(2n) {
     margin-right: 0;
-}
+} */
 
 .post-container {
     display: flex;
@@ -129,37 +134,62 @@ ul{
 }
 
 .post-container__city {
-    margin-top: 3.448vh;
-    margin-bottom: 1.779vh;
-    font-size: 3.733vw;
+    margin-top: 23px;
+    margin-bottom: 12px;
     font-weight: 400;
-    line-height: 4.133vw;
     color: rgba(255, 255, 255, 1);
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: center;
+
 }
 
 .post-container__temp {
-    font-size: 10.666vw;
-    font-weight: 500;
-    line-height: 11.808vw;
     margin: 0;
     color: rgba(255, 255, 255, 1);
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 44px;
+    letter-spacing: 0em;
+    text-align: center;
+
 }
 
 .item_temp {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: "SF-Medium";
 }
 
 .post-container__icon {
-    margin-bottom: 2.398vh;
+    margin-bottom: 16px;
 }
 
 .icon_weather {
-    min-width: 20.8vw;
-    min-height: 11.694vh;
+    width: 78px;
+    height: 78px;
 }
 
+
+@media (min-width: 300px) {
+
+    .post-weather {
+        width: 100%;
+    }
+
+    .post-weather__post-container {
+        flex-basis: calc((100% / 2) - (2rem / 2));
+    }
+    
+    .post-weather__post-container:nth-child(2n) {
+        margin-right: 0;
+    }
+
+}
 
 @media (min-width: 479px) {
 
@@ -168,27 +198,57 @@ ul{
     }
 
     .post-weather__post-container {
-        flex-basis: calc((100% / 2) - 1rem);
+        flex-basis: calc((100% / 2) - (2rem / 2));
     }
 }
 @media (min-width: 640px) {
-    .post-weather__post-container {
-        flex-basis: calc((100% / 2) - 1rem);
-    }
-}
-@media (min-width: 1024px) {
 
     .header {
+        margin: 0 0 40px 0;
         background-color: rgba(42, 47, 69, 1);
-        margin: 0;
-        margin-bottom: 20px;
     }
+
+    .logo__container_logo {
+        padding: 20px 0 20px 20px;
+    }
+
+    .input-field {
+        width: 50%;
+        margin-bottom: 60px;
+    }
+
+    .post-weather {
+        width: 60%;
+        justify-content: center;
+    }
+
+    .post-weather__post-container {
+        flex-basis: calc((80% / 3) - (2rem / 3));
+    }
+
+    .post-weather__post-container:nth-child(2n) {
+        margin-right: 1rem;
+    }
+
+    .post-weather__post-container:nth-child(3n) {
+        margin-right: 0;
+    }
+} 
+@media (min-width: 1024px) {
 
     .post-weather {
         width: 80%;
     }
 
     .post-weather__post-container {
-        flex-basis: calc((100% / 3) - 2rem);
+        flex-basis: calc((80% / 3) - (2rem / 3));
+    }
+
+    .post-weather__post-container:nth-child(2n) {
+        margin-right: 1rem;
+    }
+
+    .post-weather__post-container:nth-child(3n) {
+        margin-right: 0;
     }
 }

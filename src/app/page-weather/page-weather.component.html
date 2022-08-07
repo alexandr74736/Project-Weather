@@ -1,27 +1,30 @@
 <div id="divWeatherMain" class="page-weather">
     <div class="page-weather__header">
         <!-- Сделать кнопки с картинками -->
-        <button type="button" [routerLink]="['/']" src="">
+        <label class="header__btn header__btn_back">
+            <input type="button" [routerLink]="['/']">
             <svg-icon icon="Back" class="icon icon_back" alt="Назад>"></svg-icon>
-        </button>
-        <button >
+        </label>
+        <label class="header__btn header__btn_bookmark">
             <input type="checkbox" (click)="check($event)" [checked]="checkActive()">
             <svg-icon icon="{{bookmark}}" class="icon icon_bookmark" alt="В закладки>"></svg-icon>
-        </button>
+        </label>
     </div>
     <div class="page-weather__container">
         <div class="page-weather__item page-weather__item_city">{{ city?.name }}</div> 
         <div class="page-weather__item page-weather__item_description">{{ city?.description }}</div>
-        <div class="page-weather__item page-weather__item_temp">
-            <p class="item_temp">{{ city?.temp  }}°</p>
-        </div>
-        <div class="page-weather__item page-weather__item_icon">
-            <svg-icon icon="{{ city?.icon }}" class="icon icon_weather"></svg-icon>
+        <div class="page-weather__item page-weather__item_flex">
+            <div class="page-weather__item page-weather__item_temp">
+                <p class="item_temp">{{ city?.temp  }}°</p>
+            </div>
+            <div class="page-weather__item page-weather__item_icon">
+                <svg-icon icon="{{ city?.icon }}" class="icon icon_weather"></svg-icon>
+            </div>
         </div>
         <div class="page-weather__item page-weather__item_pressure">
             <svg-icon icon="Barometer" class="icon icon_barometer" alt="Барометр>"></svg-icon>
             <p class="item_pressure">{{ city?.pressure }} мм рт. ст.</p>
         </div>
-        <div class="page-weather__item">Закат в {{ city?.sunset }}</div> 
+        <div class="page-weather__item page-weather__item_sunset">Закат в {{ city?.sunset }}</div> 
     </div>
 </div>

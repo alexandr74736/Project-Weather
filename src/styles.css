@@ -1,10 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "SF-Regular";
+    src: local("SF-Pro-Display"), url(./assets/fonts/SF-Pro-Display/SFPRODISPLAYREGULAR.OTF) format("truetype");
+}
+
+@font-face {
+    font-family: "SF-Medium";
+    src: local("SF-Pro-Display"), url(./assets/fonts/SF-Pro-Display/SFPRODISPLAYMEDIUM.OTF) format("truetype");
+}
+
+@font-face {
+    font-family: "SF-Bold";
+    src: local("SF-Pro-Display"), url(./assets/fonts/SF-Pro-Display/SFPRODISPLAYBOLD.OTF) format("truetype");
+}
+
+@font-face {
+    font-family: "SF-Semibold";
+    src: local("SF-Pro-Display"), url(./assets/fonts/SF-Pro-Display/SFPRODISPLAYSEMIBOLDITALIC.OTF) format("truetype");
+}
+
 body {
     background-color: #161B30;
-    font-family: 'SF Pro Display';
+    font-family: "SF-Regular";
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
     color: #8A91AB;
+    margin: 0;
 }
+

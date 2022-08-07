@@ -17,15 +17,15 @@ export class MainComponent implements OnInit {
 
   posts: City[] | any = [] 
   post: any
-
   pSub?: Subscription 
   dSub?: Subscription 
-
   keyword = 'name';
   data = this.acService.data
   arr: any
-  
 
+  searchField: any
+  ddMenu: any
+  
   constructor(
                 private localService: localService,
                 private httpService: HttpService,
@@ -36,7 +36,11 @@ export class MainComponent implements OnInit {
 
    
   ngOnInit(): void {
-
+    this.changeModuleStyle()
+    this.postsInit()
+  }
+  
+  postsInit() {
     this.dSub = this.postsService.bSbj$.subscribe(arr => {
       this.arr = arr
 
@@ -46,6 +50,7 @@ export class MainComponent implements OnInit {
         locArr.forEach( (item) => {
           this.posts.push(item)
         })
+        this.postsService.newBSub(this.posts)
       } else {
         arr.forEach( (item) => {
           let name = item["name"]
@@ -57,9 +62,8 @@ export class MainComponent implements OnInit {
         })
       }
     })
-    
   }
-  
+
   selectEvent(item:any) {
     const acResponse: string = item.name
     this.acService.newSub(acResponse)
@@ -70,7 +74,16 @@ export class MainComponent implements OnInit {
     let e = $event.currentTarget.firstElementChild.firstElementChild.innerHTML
     this.router.navigate( ['/page', e] )
   }
-    
+
+  changeModuleStyle() {
+    this.ddMenu = document.querySelector(".ng-autocomplete")
+    this.ddMenu = this.ddMenu.firstElementChild.childNodes
+    this.ddMenu[0].firstElementChild.style.backgroundColor = '#2A2F45';
+    this.ddMenu[1].style.backgroundColor = '#2A2F45';
+    // li - border: none, a - color: '#8A91AB', скрыть скролл
+    return this.ddMenu
+  }
+
   ngOnDestroy() {
     if (this.pSub) {
       this.pSub.unsubscribe()
@@ -79,5 +92,4 @@ export class MainComponent implements OnInit {
       this.dSub.unsubscribe()
     }
   }
-
 }
