@@ -50,7 +50,7 @@ export class MainComponent implements OnInit {
         locArr.forEach( (item) => {
           this.posts.push(item)
         })
-        this.postsService.newBSub(this.posts)
+        return this.postsService.newBSub(this.posts)
       } else {
         arr.forEach( (item) => {
           let name = item["name"]
@@ -67,12 +67,12 @@ export class MainComponent implements OnInit {
   selectEvent(item:any) {
     const acResponse: string = item.name
     this.acService.newSub(acResponse)
-    this.router.navigate( ['/page', acResponse] )
+    return this.router.navigate( ['/page', acResponse] )
   }
 
   goToCity($event:any) {
     let e = $event.currentTarget.firstElementChild.firstElementChild.innerHTML
-    this.router.navigate( ['/page', e] )
+    return this.router.navigate( ['/page', e] )
   }
 
   changeModuleStyle() {
@@ -86,10 +86,10 @@ export class MainComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.pSub) {
-      this.pSub.unsubscribe()
+      return this.pSub.unsubscribe()
     }
     if (this.dSub) {
-      this.dSub.unsubscribe()
+      return this.dSub.unsubscribe()
     }
   }
 }

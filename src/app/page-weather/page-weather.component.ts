@@ -41,6 +41,7 @@ export class PageWeatherComponent implements OnInit, OnDestroy {
   getBSub() {
     this.dSub = this.postsService.bSbj$.subscribe(arr => {
       this.arr = arr
+      return this.arr
     })
   }
 
@@ -68,7 +69,7 @@ export class PageWeatherComponent implements OnInit, OnDestroy {
       this.arr.push(this.city)
       this.posts = this.arr
       localStorage.setItem(`${this.city.name}`, JSON.stringify(this.city))
-      this.postsService.newBSub(this.posts)
+      return this.postsService.newBSub(this.posts)
 
     } else {
         this.bookmark = "Bookmark"
@@ -76,7 +77,7 @@ export class PageWeatherComponent implements OnInit, OnDestroy {
         this.arr.splice(idx,1)
         this.posts = this.arr
         localStorage.removeItem(`${this.city.name}`)
-        this.postsService.newBSub(this.posts)
+        return this.postsService.newBSub(this.posts)
     }
   }
 
@@ -94,10 +95,10 @@ export class PageWeatherComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.pSub) {
-      this.pSub.unsubscribe()
+      return this.pSub.unsubscribe()
     }
     if (this.dSub) {
-      this.dSub.unsubscribe()
+      return this.dSub.unsubscribe()
     }
   }
 }

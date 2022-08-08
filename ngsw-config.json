@@ -26,5 +26,15 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-posts",
+      "urls": ["https://api.openweathermap.org/**"],
+      "cacheConfig": {
+        "maxSize": 20,
+        "maxAge": "3600"
+      }
+    }
   ]
 }

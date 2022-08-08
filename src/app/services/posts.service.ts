@@ -11,7 +11,7 @@ export class PostsService {
     constructor() { }
 
     newBSub(city: City[] | any) {
-        this.bSbj$.next(city)
+        return this.bSbj$.next(city)
     }
 }
 

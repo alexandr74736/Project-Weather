@@ -35,6 +35,6 @@ export class autocompleeteService{
       ];
 
       newSub(acResponse: string) {
-        this.sbj$.next(acResponse)
+        return this.sbj$.next(acResponse)
       }
 }
