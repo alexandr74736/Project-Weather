@@ -14,10 +14,10 @@ export class HttpService{
 
 
     getCoords(cityName:string) : Observable<any> {
-        return this.http.get(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName},+7&limit=1&appid=1f8d95b9fca4ced1f40f4bdcff9214e1&lang=ru`)
+        return this.http.get(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName},+7&limit=1&appid=1f8d95b9fca4ced1f40f4bdcff9214e1&lang=ru`)
             .pipe(map((data:any)=>{
                 let obj = data;
-
+                
                 return new Coords(
                     obj[0]["local_names"]["ru"],
                     obj[0].lat,

@@ -21,6 +21,10 @@ Run `ng build --prod` to build the project. The build artifacts will be stored i
 Run `http-server -p 4200` from `dist/project-weather` directory.
 Tap `http://127.0.0.1:4200` to check app.
 
+## Firebase Hosting
+
+Follow the link `weather-487da.web.app` or `weather-487da.firebaseapp.com`
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
