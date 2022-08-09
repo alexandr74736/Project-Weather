@@ -70,6 +70,17 @@ export class MainComponent implements OnInit {
     return this.router.navigate( ['/page', acResponse] )
   }
 
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+  
+  onFocused($event:any){
+    let e = $event.currentTarget
+    console.log(e)
+    // do something when input is focused
+  }
+
   goToCity($event:any) {
     let e = $event.currentTarget.firstElementChild.firstElementChild.innerHTML
     return this.router.navigate( ['/page', e] )
@@ -79,8 +90,9 @@ export class MainComponent implements OnInit {
     this.ddMenu = document.querySelector(".ng-autocomplete")
     this.ddMenu = this.ddMenu.firstElementChild.childNodes
     this.ddMenu[0].firstElementChild.style.backgroundColor = '#2A2F45';
-    this.ddMenu[1].style.backgroundColor = '#2A2F45';
-    // li - border: none, a - color: '#8A91AB', скрыть скролл
+    this.ddMenu[0].firstElementChild.style.color = '#8A91AB';
+
+    // not found - padding: 0; border: none; background: #30354B;, скрыть скролл
     return this.ddMenu
   }
 

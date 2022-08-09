@@ -18,11 +18,13 @@
                       [searchKeyword]="keyword"
                       placeholder="Укажите город..."
                       (selected)='selectEvent($event)'
+                      (inputChanged)='onChangeSearch($event)'
+                      (inputFocused)='onFocused($event)'
                       [itemTemplate]="itemTemplate"
-                      [notFoundTemplate]="notFoundTemplate">                                 
+                      [notFoundTemplate]="notFoundTemplate">                             
                     </ng-autocomplete>
                     
-                    <ng-template #itemTemplate let-item id="ng-template">
+                    <ng-template #itemTemplate let-item>
                     <a [innerHTML]="item.name" ></a>
                     </ng-template>
                     

@@ -31,16 +31,19 @@ export class HttpService{
         return this.http.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=1f8d95b9fca4ced1f40f4bdcff9214e1&lang=ru`)
             .pipe(map((data:any)=>{
             let obj = data;
+            // let description = obj.weather[0]["description"];
+            let description = obj.weather[0]["description"];
+                description = this.descrFix(description)
             let pressure = Math.floor(obj.main["pressure"] / 1.333223684);
             let temp = (obj.main["temp"] - 273.15).toFixed(0);
             let sunsetTime = new Date(obj.sys["sunset"] * 1000);
             let sunset_time = sunsetTime.toLocaleTimeString()
             let icon = obj.weather[0]["icon"]
-            icon = this.iconsService.checkIcon(icon)
+                icon = this.iconsService.checkIcon(icon)
              
             return new City(
                 obj.name, 
-                obj.weather[0]["description"], 
+                description, 
                 temp, 
                 pressure, 
                 sunset_time,
@@ -57,4 +60,8 @@ export class HttpService{
             )
     }
 
+    descrFix(str:string) {
+        if (!str) return str;
+        return str[0].toUpperCase() + str.slice(1);
+      }
 }

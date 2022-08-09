@@ -34,16 +34,6 @@ main {
     margin: 0 20px;
 }
 
-.input {
-    all: unset;
-    background-color: #2A2F45;
-    border-radius: 2px;
-    font-style: normal;
-    color: #8A91AB;
-    width: 100%;
-    cursor: pointer; 
-}
-
 .input-field, .hint-city {
     width: 100%;
     margin-bottom: 30px;
@@ -94,7 +84,8 @@ main {
 a {
     text-decoration:none;
     color: #fff;
-    border-bottom: 1px solid rgba(255, 255, 255, 1)
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+    border-bottom-style: dashed;
 }
 
 ul{ 
@@ -119,13 +110,7 @@ ul{
     cursor: pointer; 
     margin-right: 1rem;
     margin-bottom: 1rem;
-    /* width: calc((100% / 2) - (2rem / 2)); */
 }
-
-
-/* .post-weather__post-container:nth-child(2n) {
-    margin-right: 0;
-} */
 
 .post-container {
     display: flex;
@@ -251,4 +236,26 @@ ul{
     .post-weather__post-container:nth-child(3n) {
         margin-right: 0;
     }
+}
+
+.input-field * {
+    /* all: unset; */
+    background-color: #30354B;
+    color: #8A91AB;
+    cursor: pointer; 
+    border: none;
+}
+
+.input > * {
+    
+    background-color: #2A2F45;
+    color: #8A91AB;
+
+    cursor: pointer; 
+}
+
+.autocomplete-container > .not-found {
+    padding: 0;
+    border: none;
+    background: #30354B;
 }

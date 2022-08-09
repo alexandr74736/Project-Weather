@@ -25,6 +25,6 @@
             <svg-icon icon="Barometer" class="icon icon_barometer" alt="Барометр>"></svg-icon>
             <p class="item_pressure">{{ city?.pressure }} мм рт. ст.</p>
         </div>
-        <div class="page-weather__item page-weather__item_sunset">Закат в {{ city?.sunset }}</div> 
+        <div class="page-weather__item page-weather__item_sunset">Закат в {{ city?.sunset | slice:0:5 }}</div> 
     </div>
 </div>
